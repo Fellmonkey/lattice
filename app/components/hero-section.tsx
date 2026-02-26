@@ -134,7 +134,7 @@ export default function HeroSection() {
 
       {/*
         Mobile  (default): 2-column grid, cells stack with fixed heights
-        Desktop (lg):      4-column grid, row-1 = 80vh, row-2 = auto
+        Desktop (lg):      4-column grid, row-1 = 60vh, row-2 = auto
         .hero-grid is defined in globals.css
       */}
       <div ref={containerRef} className="hero-grid relative z-10 mx-auto w-full max-w-6xl">

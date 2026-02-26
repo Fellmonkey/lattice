@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lattice — Build at the Speed of Thought
+
+A dark-themed SaaS product landing page built with Next.js, featuring a CSS Grid Bento layout, scroll-driven animations, and a fully responsive design system.
+
+## What it is
+
+Lattice is a marketing landing page concept for a developer infrastructure platform — edge computing, vector databases, automated workflows, and enterprise security. The page communicates product value through motion, density, and interactive layout rather than static copy alone.
+
+## Sections
+
+| Section | Description |
+|---|---|
+| **Hero — Grid Puzzle** | Asymmetric Bento grid. Row 1 occupies 60vh. Contains headline + CTA, a vertical partner marquee (infinite loop), a live interactive spotlight grid demo, an animated counter, and a real-time stat cell. |
+| **Sticky Scroll** | Scroll-driven storytelling: each of 5 product features snaps into view as you scroll, updating a synced phone mockup with animated bar charts. On mobile, renders as a static card list. |
+| **Tech Hover Reveal** | 6-card grid of core technologies. Hovering any card expands the entire row to reveal a code illustration and description — row height stays uniform across all siblings. |
+| **Curtain Footer** | Parallax reveal footer that slides up over the previous section. Contains a full-width CTA banner, navigation columns, and a bottom bar. |
+
+## Tech stack
+
+- **[Next.js 16](https://nextjs.org)** — App Router, React Server Components, static export
+- **[React 19](https://react.dev)** — `"use client"` components for animation-heavy sections
+- **[Tailwind CSS v4](https://tailwindcss.com)** — `@import "tailwindcss"` + `@theme inline` syntax, no config file
+- **[Framer Motion 12](https://motion.dev)** — `useScroll`, `useTransform`, staggered entry animations, CSS var-driven spotlight effects
+- **[Lucide React](https://lucide.dev)** — icon set throughout
+- **[clsx](https://github.com/lukeed/clsx)** — conditional class merging via `cn()` utility
+- **TypeScript 5** — strict mode
+
+## Design system
+
+- **Background**: `#09090b` (near-black zinc)
+- **Accent**: violet-600 → indigo-400 gradient
+- **Typography**: Geist Sans (variable font via `next/font`)
+- **Borders**: `white/[0.06]` — subtle frosted dividers
+- **Motion philosophy**: entrance animations on scroll entry (`IntersectionObserver`), no layout shift, `prefers-reduced-motion` respected
+
+## Project structure
+
+```
+app/
+├── components/
+│   ├── hero-section.tsx          # Bento hero grid
+│   ├── sticky-scroll-section.tsx # Scrollytelling + phone mock
+│   ├── tech-hover-section.tsx    # Row-expand hover cards
+│   └── curtain-footer.tsx        # Parallax footer
+├── hooks/
+│   └── use-animations.ts         # useCountUp, useScrollProgress, useInView, useMousePosition
+├── lib/
+│   └── utils.ts                  # cn() helper
+├── globals.css                   # Tailwind import + .hero-grid responsive class
+├── layout.tsx                    # Root layout, Geist font, dark meta
+└── page.tsx                      # Server Component, composes all sections
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build   # production build
+npm run lint    # ESLint (0 errors expected)
+```
